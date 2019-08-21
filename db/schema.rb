@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_11_222510) do
+ActiveRecord::Schema.define(version: 2019_08_19_200932) do
 
   create_table "infinitives", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "word", null: false, collation: "utf8_bin"
@@ -24,12 +24,12 @@ ActiveRecord::Schema.define(version: 2019_08_11_222510) do
 
   create_table "list_words", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "list_id", null: false
-    t.integer "type_id", null: false
-    t.string "type", null: false
+    t.integer "word_id", null: false
+    t.string "word_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["list_id", "type", "type_id"], name: "index_list_words_on_list_id_and_type_and_type_id", unique: true
-    t.index ["type", "type_id"], name: "index_list_words_on_type_and_type_id"
+    t.index ["list_id", "word_type", "word_id"], name: "index_list_words_on_list_id_and_word_type_and_word_id", unique: true
+    t.index ["word_type", "word_id"], name: "index_list_words_on_word_type_and_word_id"
   end
 
   create_table "lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
