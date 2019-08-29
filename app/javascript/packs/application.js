@@ -1,18 +1,32 @@
-/* eslint-disable */
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
+// Run this example by adding <%= javascript_pack_tag 'hello_react' %> to the head of your layout file,
+// like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
+// of the page.
 
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
+import React, { useReducer } from 'react'
+import ReactDOM from 'react-dom'
+import listReducer from '../reducers/listReducer'
+import apiReducer from '../reducers/apiReducer'
+import listWordsReducer from '../reducers/listWordsReducer'
+import { AppProvider } from '../providers/appProvider'
+import { useCombinedReducers } from '../hooks/useCombinedReducers'
+import Home from '../components/home'
 
+const App = () => {
+  const [state, dispatch] = useCombinedReducers({
+    listsInfo: useReducer(listReducer, {}),
+    listWords: useReducer(listWordsReducer, {}),
+    api: useReducer(apiReducer, { callInProgress: true })
+  })
 
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
+  // errorReducer
+
+  const value = { state, dispatch }
+
+  return (
+    <AppProvider value={value}>
+      <Home/>
+    </AppProvider>
+  )
+}
+
+ReactDOM.render(<App/>, document.getElementById('root'))
