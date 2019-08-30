@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAppContext } from '../../hooks/appContext'
+import Table from '../generic/table'
 
 const ListsShow = () => {
   const { state } = useAppContext()
@@ -9,64 +10,17 @@ const ListsShow = () => {
   }
 
   const words = state.listWords.words
-  const infinitives = words.infinitves
-  const nouns = words.nouns
-
-  let nounTable
-  let infinitiveTable
-
-  if (infinitives && infinitives.length) {
-    infinitiveTable = (
-      <div>
-        <h2> Infinitives </h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Infinitive</th>
-              <th>Translation</th>
-            </tr>
-          </thead>
-          <tbody>
-            {infinitives.map(infinitive => (
-              <tr key={infinitive.id}>
-                <td>{infinitive.word}</td>
-                <td>{infinitive.eng_translation}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>)
-  }
-
-  if (nouns && nouns.length) {
-    nounTable = (
-      <div>
-        <h2> Nouns </h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Noun</th>
-              <th>Gender</th>
-              <th>Translation</th>
-            </tr>
-          </thead>
-          <tbody>
-            {nouns.map(noun => (
-              <tr key={noun.id}>
-                <td>{noun.word}</td>
-                <td>{noun.gender}</td>
-                <td>{noun.eng_translation}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>)
-  }
+  const infinitives = words.infinitves.map(infinitive => {
+    return({id: infinitive.id, noun: infinitive.word, translation: infinitive.eng_translation})
+  })
+  const nouns = words.nouns.map(noun => {
+    return({id: noun.id, noun: noun.word, gender: noun.gender, translation: noun.eng_translation})
+  })
 
   return (
     <div>
-      {nounTable}
-      {infinitiveTable}
+      <Table title='Nouns' arr={nouns}/>
+      <Table title='Infinitives' arr={infinitives}/>
     </div>
   )
 }
