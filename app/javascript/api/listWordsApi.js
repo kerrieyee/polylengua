@@ -1,4 +1,4 @@
-export const ListWordsApi = {
+export const listWordsApi = {
   fetch (dispatch, id) {
     return fetch('/api/v1/list_words?list_id=' + id)
       .then(res => res.json())

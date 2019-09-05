@@ -1,4 +1,4 @@
-export const ListApi = {
+export const listApi = {
   fetchAll (dispatch) {
     return fetch('/api/v1/lists')
       .then(res => res.json())

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListWordsApi } from '../../api/listWordsApi'
+import { listWordsApi } from '../../api/listWordsApi'
 import { useAppContext } from '../../hooks/appContext'
 
 const ListsIndex = () => {
@@ -10,7 +10,7 @@ const ListsIndex = () => {
       return list.id === parseInt(event.target.dataset.id)
     })
     dispatch({ type: 'API_CALL_IN_PROGRESS' })
-    ListWordsApi.fetch(dispatch, list.id)
+    listWordsApi.fetch(dispatch, list.id)
     dispatch({ type: 'CURRENT_LIST_SELECTED', currentList: list, selectedAction: 'listsShow' })
   }
 
