@@ -11,6 +11,7 @@ class VerbConjugation < ActiveRecord::Base
   }
 
   belongs_to :infinitive
+  has_many :study_session_details, as: :word
 
   def generate_translation(form)
     eng_translation.gsub(/^i/i, TRANSLATION_HASH[form])

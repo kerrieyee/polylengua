@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :lists
       resources :list_words
+      resources :study_sessions, only: [:index, :create, :update]
     end
   end
 
