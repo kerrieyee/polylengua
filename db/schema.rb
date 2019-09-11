@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2019_09_05_034031) do
   create_table "study_session_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "study_session_id"
     t.string "word_type", null: false
-    t.integer "word_type_id", null: false
+    t.integer "word_id", null: false
     t.string "result"
     t.string "form"
     t.datetime "created_at", null: false

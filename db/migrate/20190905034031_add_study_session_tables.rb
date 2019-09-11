@@ -12,7 +12,7 @@ class AddStudySessionTables < ActiveRecord::Migration[5.2]
     create_table :study_session_details do |t|
       t.references :study_session
       t.string :word_type, null: false
-      t.integer :word_type_id, null: false
+      t.integer :word_id, null: false
       t.string :result
       t.string :form
 
