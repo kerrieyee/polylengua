@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_19_200932) do
+ActiveRecord::Schema.define(version: 2019_09_05_034031) do
 
   create_table "infinitives", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "word", null: false, collation: "utf8_bin"
@@ -46,6 +46,27 @@ ActiveRecord::Schema.define(version: 2019_08_19_200932) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["word"], name: "index_nouns_on_word", unique: true
+  end
+
+  create_table "study_session_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "study_session_id"
+    t.string "word_type", null: false
+    t.integer "word_type_id", null: false
+    t.string "result"
+    t.string "form"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["study_session_id"], name: "index_study_session_details_on_study_session_id"
+  end
+
+  create_table "study_sessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "state"
+    t.datetime "in_progress_at"
+    t.datetime "completed_at"
+    t.bigint "list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_study_sessions_on_list_id"
   end
 
   create_table "verb_conjugations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
