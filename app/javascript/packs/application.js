@@ -5,6 +5,7 @@
 import React, { useReducer } from 'react'
 import ReactDOM from 'react-dom'
 import listReducer from '../reducers/listReducer'
+import studySessionsReducer from '../reducers/studySessionsReducer'
 import apiReducer from '../reducers/apiReducer'
 import listWordsReducer from '../reducers/listWordsReducer'
 import { AppProvider } from '../providers/appProvider'
@@ -15,7 +16,8 @@ const App = () => {
   const [state, dispatch] = useCombinedReducers({
     listsInfo: useReducer(listReducer, {}),
     listWords: useReducer(listWordsReducer, {}),
-    api: useReducer(apiReducer, { callInProgress: true })
+    api: useReducer(apiReducer, { callInProgress: true }),
+    studySessions: useReducer(studySessionsReducer, {})
   })
 
   // errorReducer

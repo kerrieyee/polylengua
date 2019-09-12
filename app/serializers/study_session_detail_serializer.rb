@@ -17,6 +17,11 @@ class StudySessionDetailSerializer < ActiveModel::Serializer
     end
   end
 
+  def gender
+    return unless object.word_type== 'Noun'
+    object.word.gender
+  end
+
   def mood
     return unless object.word_type== 'VerbConjugation'
     object.word.mood
