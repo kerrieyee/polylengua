@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAppContext } from '../../hooks/appContext'
+import Card from '../common/card/index'
 
 const StudySessionsShow = () => {
   const { state, dispatch } = useAppContext()
@@ -7,7 +8,7 @@ const StudySessionsShow = () => {
 
   return (
     <div>
-      {firstWord.word}
+      <Card word={firstWord} disposition='front'>
     </div>
   )
 }
