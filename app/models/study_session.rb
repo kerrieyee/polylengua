@@ -19,13 +19,17 @@ class StudySession < ActiveRecord::Base
     end
 
     event :complete do
-      transitions from: :in_progress, to: :completed
+      transitions from: :in_progress, to: :completed, guard: :details_completed?
     end
   end
 
   scope :non_completed, -> { where.not(state: 'completed') }
 
   private
+
+  def details_completed?
+    study_session_details.all?{ |ssd| ssd.result.present? }
+  end
 
   def log_timestamp
     field = "#{state}_at"

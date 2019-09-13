@@ -33,5 +33,20 @@ export const studySessionsApi = {
       }, (error) => { console.log(error) })
   },
 
+  complete (dispatch, session) {
+    return fetch('/api/v1/study_sessions/' + session.id, {
+      method: 'PATCH',
+        headers: {
+         'Accept': 'application/json',
+         'Content-Type': 'application/json'
+       },
+        body: JSON.stringify({
+          session_action: 'complete',
+          study_session_details: session.study_session_details
+        })
+      })
+      .then(() => {
+        dispatch({ type: 'CLEAR_SESSION' })
+      }, (error) => { console.log(error) })
   }
 }

@@ -1,5 +1,5 @@
 class StudySessionDetailSerializer < ActiveModel::Serializer
-  attributes :result, :form, :word_type, :word_id, :word, :translation, :mood, :tense
+  attributes :id, :result, :form, :word_type, :word_id, :word, :translation, :mood, :tense
 
   def word
     if object.word_type == 'Noun'
