@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 #AASM state machine
-gem 'aasm'
+gem 'aasm', '~> 5.0.0'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -38,9 +38,7 @@ gem 'webpacker', '~> 4.x'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-#adds respond_to/respond_with controller methods
-gem 'responders'
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.x'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
