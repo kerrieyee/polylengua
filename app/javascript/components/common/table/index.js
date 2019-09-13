@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Table = ({ title, arr }) => {
-  if (!arr || !arr.length) {
+  if (!arr.length) {
     return (<div></div>)
   }
 
@@ -37,3 +38,9 @@ const Table = ({ title, arr }) => {
 }
 
 export default Table
+
+Table.propTypes = {
+  arr: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+}
+

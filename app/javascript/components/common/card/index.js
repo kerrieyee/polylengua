@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './styles'
+import PropTypes from 'prop-types'
 
 
 const Card = ({ word, disposition, onClick}) => {
@@ -22,3 +23,9 @@ const Card = ({ word, disposition, onClick}) => {
 }
 
 export default Card
+
+Card.propTypes = {
+  word: PropTypes.object.isRequired,
+  disposition: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+}
