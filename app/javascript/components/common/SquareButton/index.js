@@ -19,6 +19,10 @@ export default SquareButton
 SquareButton.propTypes = {
   type: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
+  ]),
   onClick: PropTypes.func.isRequired
 }

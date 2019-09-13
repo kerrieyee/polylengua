@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAppContext } from '../../hooks/appContext'
 import Table from '../common/table/index'
+import NavBar from '../common/NavBar/index'
 import { studySessionsApi } from '../../api/studySessionsApi'
 
 const ListsShow = () => {
@@ -9,6 +10,10 @@ const ListsShow = () => {
   const startStudySession = () => {
     dispatch({ type: 'API_CALL_IN_PROGRESS' })
     studySessionsApi.create(dispatch, state.listsInfo.currentList.id)
+  }
+
+  const backToLists = (result) => {
+    dispatch({ type: 'CURRENT_LIST_SELECTED', currentList: null, selectedAction: 'listsIndex' })
   }
 
   if (!state.listWords || !state.listWords.words) {
@@ -26,6 +31,7 @@ const ListsShow = () => {
 
   return (
     <div>
+      <NavBar title={state.listsInfo.currentList.name} onClick={backToLists}/>
       <div onClick={startStudySession}>START STUDYING!</div>
       <Table title='Nouns' arr={nouns}/>
       <Table title='Infinitives' arr={infinitives}/>

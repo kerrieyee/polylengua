@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { listApi } from '../api/listApi'
 import { useAppContext } from '../hooks/appContext'
 import { componentList, currentComponent } from './componentRouting'
-import NavBar from './common/NavBar/index'
 import styles from './globalStyles'
 
 const Home = () => {
@@ -15,7 +14,6 @@ const Home = () => {
   const ComponentName = componentList[currentComponent(state)]
   return (
     <div className={styles.base}>
-      <NavBar title='Polylengua'/>
       <ComponentName/>
     </div>
   )

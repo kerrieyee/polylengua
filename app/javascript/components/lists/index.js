@@ -1,6 +1,8 @@
 import React from 'react'
 import { listWordsApi } from '../../api/listWordsApi'
 import { useAppContext } from '../../hooks/appContext'
+import NavBar from '../common/NavBar/index'
+
 
 const ListsIndex = () => {
   const { state, dispatch } = useAppContext()
@@ -15,8 +17,9 @@ const ListsIndex = () => {
   }
 
   const lists = state.listsInfo.lists
+  let body
   if (lists && lists.length) {
-    return (
+    body = (
       <ul>
         {lists.map(list => (
           <li key={list.id} data-id={list.id} onClick={click}>
@@ -26,8 +29,15 @@ const ListsIndex = () => {
       </ul>
     )
   } else {
-    return (<div> No Lists Available </div>)
+    body = (<div> No Lists Available </div>)
   }
+
+  return(
+    <div>
+      <NavBar title='My Lists'/>
+      {body}
+    </div>
+  )
 }
 
 export default ListsIndex

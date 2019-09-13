@@ -1,5 +1,12 @@
 const startStudySessionsReducer = (state = {}, action) => {
   const initialDisposition = 'english'
+  const initialState = {
+    session: null,
+    currentWord: null,
+    currentDisposition: initialDisposition,
+    correct: 0,
+    incorrect: 0
+  }
 
   switch (action.type) {
     case 'CARD_STUDIED':
@@ -13,6 +20,8 @@ const startStudySessionsReducer = (state = {}, action) => {
       return { ...state, currentDisposition: disposition}
     case 'CREATE_STUDY_SESSION_SUCCESS':
       return { ...state, session: action.result, currentWord: action.result.study_session_details[0], currentDisposition: initialDisposition }
+    case 'CLEAR_SESSION':
+      return initialState
     default:
       return state
   }
