@@ -1,5 +1,5 @@
 class VerbConjugation < ActiveRecord::Base
-  FORM_OPTIONS_ARRAY =  ['1s', '2s', '3s', '1p', '2p', '3p']
+  FORM_OPTIONS_ARRAY =  ['1s', '2s', '3s', '1p', '3p']
 
   TRANSLATION_HASH = {
     '1s' => 'I',

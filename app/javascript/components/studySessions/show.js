@@ -2,6 +2,7 @@ import React from 'react'
 import { useAppContext } from '../../hooks/appContext'
 import Card from '../common/card/index'
 import SquareButton from '../common/SquareButton/index'
+import DataBox from '../common/DataBox/index'
 import NavBar from '../common/NavBar/index'
 import styles from './styles'
 import { studySessionsApi } from '../../api/studySessionsApi'
@@ -39,7 +40,15 @@ const StudySessionsShow = () => {
       </div>
     )
   } else {
-    body = <SquareButton type='success' text='Done!' value={state.studySessions.session} onClick={completeSession} />
+    body = (
+      <div>
+        <div className={styles.button_container}>
+          <DataBox color='red' subText='Incorrect' mainText={`${state.studySessions.incorrect}`}/>
+          <DataBox color='green' subText='Correct' mainText={`${state.studySessions.correct}`}/>
+        </div>
+        <SquareButton type='primary' text='Done!' value={state.studySessions.session} onClick={completeSession} />
+      </div>
+    )
   }
 
   return (
