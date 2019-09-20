@@ -28,5 +28,5 @@ test:
   port: 3317
 
 production:
-  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: polylengua
