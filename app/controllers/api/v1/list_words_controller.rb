@@ -1,5 +1,4 @@
 class Api::V1::ListWordsController < ApplicationController
-  respond_to :json
 
   def index
     list = List.find(params[:list_id])
