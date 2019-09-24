@@ -2,6 +2,7 @@ import React from 'react'
 import { useAppContext } from '../../hooks/appContext'
 import Table from '../common/table/index'
 import NavBar from '../common/NavBar/index'
+import SquareButton from '../common/SquareButton/index'
 import { studySessionsApi } from '../../api/studySessionsApi'
 
 const ListsShow = () => {
@@ -22,7 +23,7 @@ const ListsShow = () => {
 
   const words = state.listWords.words
   const infinitives = words.infinitves.map(infinitive => {
-    return({id: infinitive.id, noun: infinitive.word, translation: infinitive.eng_translation})
+    return({id: infinitive.id, infinitive: infinitive.word, translation: infinitive.eng_translation})
   })
   const nouns = words.nouns.map(noun => {
     return({id: noun.id, noun: noun.word, gender: noun.gender, translation: noun.eng_translation})
@@ -32,7 +33,7 @@ const ListsShow = () => {
   return (
     <div>
       <NavBar title={state.listsInfo.currentList.name} onClick={backToLists}/>
-      <div onClick={startStudySession}>START STUDYING!</div>
+      <SquareButton onClick={startStudySession} type='inv_success' text='Study!'/>
       <Table title='Nouns' arr={nouns}/>
       <Table title='Infinitives' arr={infinitives}/>
     </div>

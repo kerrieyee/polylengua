@@ -2,6 +2,7 @@ import React from 'react'
 import { listWordsApi } from '../../api/listWordsApi'
 import { useAppContext } from '../../hooks/appContext'
 import NavBar from '../common/NavBar/index'
+import styles from '../globalStyles'
 
 
 const ListsIndex = () => {
@@ -20,9 +21,9 @@ const ListsIndex = () => {
   let body
   if (lists && lists.length) {
     body = (
-      <ul>
+      <ul className={styles.list}>
         {lists.map(list => (
-          <li key={list.id} data-id={list.id} onClick={click}>
+          <li key={list.id} data-id={list.id} onClick={click} className={styles.list_item}>
             {list.name} {list.description}
           </li>
         ))}

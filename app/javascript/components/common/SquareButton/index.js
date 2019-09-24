@@ -17,7 +17,7 @@ const SquareButton = ({ type, text, value, onClick }) => {
 export default SquareButton
 
 SquareButton.propTypes = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['primary', 'warning', 'success', 'inv_success']),
   text: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styles from './styles'
 
 const Table = ({ title, arr }) => {
   if (!arr.length) {
@@ -15,7 +16,7 @@ const Table = ({ title, arr }) => {
       return <td key={i}>{element[k]}</td>
     })
 
-    return (<tr key={element.id}>
+    return (<tr key={element.id} className={styles.data_row}>
       {rows}
     </tr>)
   })
@@ -23,7 +24,7 @@ const Table = ({ title, arr }) => {
   return (
     <div>
       <h2> {title} </h2>
-      <table>
+      <table className={styles.table}>
         <thead>
           <tr>
             {headers}
