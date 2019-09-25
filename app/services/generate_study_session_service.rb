@@ -22,12 +22,23 @@ class GenerateStudySessionService
 
   def create_details(ss)
     #TODO allow configuration to choose how long session is
-    words = (format_nouns + format_verb_conjugations).shuffle.first(5)
+    words = (format_nouns + format_verb_conjugations).shuffle.first(20)
+    query = "INSERT INTO `study_session_details` (`study_session_id`,`word_type`, `word_id`, `form`, `created_at`, `updated_at`)"
+    values = []
+
     words.each do |word|
-      ssd = StudySessionDetail.where(study_session_id: ss.id, word_type: word[:type], word_id: word[:type_id]).first_or_create do |detail|
-        detail.form = word[:form] if word[:form].present?
+      values << "(#{ss.id}, '#{word[:type]}', #{word[:type_id]}, #{word[:form]}, NOW(), NOW())"
+      if (values.length % 1000).zero?
+        ActiveRecord::Base.connection.execute("#{query} VALUES #{values.join(',')}")
+        values = []
       end
+
+      # I would prefer to do something this for readability/making sure data isn't duplicated if clear db didn't have a 3200 query limit/hour
+      # ssd = StudySessionDetail.where(study_session_id: ss.id, word_type: word[:type], word_id: word[:type_id]).first_or_create do |detail|
+      #   detail.form = word[:form] if word[:form].present?
+      # end
     end
+    ActiveRecord::Base.connection.execute("#{query} VALUES #{values.join(',')}")
     words
   end
 
