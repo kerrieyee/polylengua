@@ -3,7 +3,7 @@ class Api::V1::StudySessionsController < ApplicationController
 
   def create
     study_session = GenerateStudySessionService.new(params[:list_id]).call
-    render json: study_session
+    render json: StudySession.where(id: study_session.id).includes(study_session_details: :word).last
   end
 
   def update

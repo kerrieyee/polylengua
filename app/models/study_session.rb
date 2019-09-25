@@ -6,9 +6,9 @@ class StudySession < ActiveRecord::Base
 
   aasm column: 'state' do
     state :pending, initial: true
-    state :in_progress, after_enter: :log_timestamp
+    state :in_progress, before_enter: :set_timestamp
     state :paused
-    state :completed, after_enter: :log_timestamp
+    state :completed, before_enter: :set_timestamp
 
     event :start do
       transitions from: [:pending, :paused], to: :in_progress
@@ -31,7 +31,7 @@ class StudySession < ActiveRecord::Base
     study_session_details.all?{ |ssd| ssd.result.present? }
   end
 
-  def log_timestamp
+  def set_timestamp
     field = "#{state}_at"
     touch(field) if has_attribute?(field)
   end
