@@ -18,13 +18,23 @@ class Api::V1::StudySessionsController < ApplicationController
   def handle_complete(study_session)
     client_details = params[:study_session_details]
     ssd_ids = client_details.map{|detail| detail['id']}
-    ssds = StudySessionDetail.where(id: ssd_ids)
+
+    values = []
+
+    query = "UPDATE study_session_details
+             SET result ="
+
     ActiveRecord::Base.transaction do
-      ssds.each do |ssd|
-        detail = client_details.find{|detail| detail['id'] == ssd.id}
-        ssd.result = detail['result']
-        ssd.save!
+      ssd_ids.each do |ssd_id|
+        detail = client_details.find{|detail| detail['id'] == ssd_id}
+        values << "WHEN #{ssd_id} THEN '#{detail['result']}'"
+        if (values.length % 1000).zero?
+          ActiveRecord::Base.connection.execute("#{query} (CASE id #{values.join(' ')} END)")
+          values = []
+        end
       end
+
+      ActiveRecord::Base.connection.execute("#{query} (CASE id #{values.join(' ')} END)")
     end
     study_session.complete! if study_session.may_complete?
   end
