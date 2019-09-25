@@ -27,7 +27,7 @@ class GenerateStudySessionService
     values = []
 
     words.each do |word|
-      values << "(#{ss.id}, '#{word[:type]}', #{word[:type_id]}, #{word[:form]}, NOW(), NOW())"
+      values << "(#{ss.id}, '#{word[:type]}', #{word[:type_id]}, '#{word[:form]}', NOW(), NOW())"
       if (values.length % 1000).zero?
         ActiveRecord::Base.connection.execute("#{query} VALUES #{values.join(',')}")
         values = []
