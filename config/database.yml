@@ -29,5 +29,5 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV['POLYLENGUA_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
   database: polylengua
