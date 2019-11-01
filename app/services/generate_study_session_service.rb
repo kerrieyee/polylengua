@@ -26,7 +26,7 @@ class GenerateStudySessionService
     #TODO allow configuration to choose how long session is and update accordingly
     words = words_to_study_again.shuffle.first(5) + new_words_to_study.shuffle.first(5)
 
-    query = "INSERT INTO `study_session_details` (`study_session_id`,`word_type`, `word_id`, `form`, `created_at`, `updated_at`)"
+    query = "INSERT INTO study_session_details (study_session_id,word_type, word_id, form, created_at, updated_at)"
     values = []
 
     words.each do |word|

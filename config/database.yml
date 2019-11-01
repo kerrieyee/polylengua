@@ -5,7 +5,7 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   reconnect: true
   pool: 5
@@ -13,9 +13,9 @@ default: &default
 development:
   <<: *default
   database: polylengua_dev
-  username: root
+  username: kerrieyee
   host: 127.0.0.1
-  port: 3306
+  port: 5432
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -23,11 +23,11 @@ development:
 test:
   <<: *default
   database: polylengua_test
-  username: root
+  username: kerrieyee
   host: 127.0.0.1
-  port: 3306
+  port: 5432
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV['POLYLENGUA_DATABASE_PASSWORD'] %>
   database: polylengua

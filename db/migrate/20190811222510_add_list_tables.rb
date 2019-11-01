@@ -18,7 +18,7 @@ class AddListTables < ActiveRecord::Migration[5.2]
     end
 
     create_table :nouns do |t|
-      t.string :word, null: false, collation: 'utf8_bin'
+      t.string :word, null: false
       t.string :gender
       t.string :eng_translation, null: false
       t.timestamps
@@ -26,25 +26,25 @@ class AddListTables < ActiveRecord::Migration[5.2]
     end
 
     create_table :infinitives do |t|
-      t.string :word, null: false, collation: 'utf8_bin'
+      t.string :word, null: false
       t.string :eng_translation
-      t.string :past_participle, collation: 'utf8_bin'
-      t.string :present_participle, collation: 'utf8_bin'
+      t.string :past_participle
+      t.string :present_participle
       t.timestamps
       t.index :word, unique: true
     end
 
     create_table :verb_conjugations do |t|
       t.integer :infinitive_id, null: false
-      t.string :mood, null: false, collation: 'utf8_bin'
-      t.string :tense, null: false, collation: 'utf8_bin'
+      t.string :mood, null: false
+      t.string :tense, null: false
       t.text :eng_translation
-      t.string :form_1s, collation: 'utf8_bin'
-      t.string :form_2s, collation: 'utf8_bin'
-      t.string :form_3s, collation: 'utf8_bin'
-      t.string :form_1p, collation: 'utf8_bin'
-      t.string :form_2p, collation: 'utf8_bin'
-      t.string :form_3p, collation: 'utf8_bin'
+      t.string :form_1s
+      t.string :form_2s
+      t.string :form_3s
+      t.string :form_1p
+      t.string :form_2p
+      t.string :form_3p
       t.timestamps
       t.index [:infinitive_id, :mood, :tense], unique: true
     end
