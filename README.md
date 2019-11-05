@@ -1,25 +1,18 @@
-# polylengua
+# Polylengua
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is mostly a personal project to study Spanish verb conjugations that I have trouble with.  I'm using https://github.com/ghidinelli/fred-jehle-spanish-verbs to seed the conjugation data.
 
-Things you may want to cover:
+To view current implementation: www.polylengua.com
 
-* Ruby version
+## TODO:
+- allow creation of lists
+- add auth0
 
-* System dependencies
+## Technology used
+- React with hooks
+- Rails w/Postgres database
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Callouts
+- Originally implemented in mysql.  However free tier only allowed a certain amount of writes per hour.  So I batch inserted data for study sessions.
+- Next switched to postgres because mysql in heroku is slightly painful and the heroku postgres free tier is a little clearer on its limitations of 10,000 rows.
